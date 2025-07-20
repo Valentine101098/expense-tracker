@@ -5,6 +5,9 @@ from datetime import datetime
 #list of expense categories to pick from
 CATEGORIES = ['Food', 'Transport', 'Shopping', 'Health', 'Entertainment', 'Utilities']
 
+UNDERLINE= "\033[1;4m"
+RESET = "\033[0m"
+
 def run():
     session = Session()
     try:
@@ -13,7 +16,7 @@ def run():
         date = datetime.strptime(date, "%Y-%m-%d")
 
         #show category list
-        print("/nSelect a category")
+        print(f"\n{UNDERLINE}Select a category{RESET}")
         for index, cat in enumerate(CATEGORIES, start=1):
             print(f"{index}. {cat}")
         category = input("Enter category number: ").strip()
@@ -43,7 +46,7 @@ def run():
 
         session.add(expense)
         session.commit()
-        print("Expense added")
+        print(" ✅ Expense added successfully")
         session.close()
     except Exception as e:
         print("Error", e)

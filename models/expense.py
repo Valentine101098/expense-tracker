@@ -11,7 +11,7 @@ class Expense(Base):
         Index('index_name', 'category')
     )
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     date = Column(DateTime, nullable=False)
     category = Column(String, nullable=False)
     amount = Column(Float, nullable=False)

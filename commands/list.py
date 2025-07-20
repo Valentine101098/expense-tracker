@@ -1,5 +1,7 @@
 from models.expense import Expense
 from db.database import Session
+from tabulate import tabulate
+
 
 def run(cat_filter = None, date_filter = None):
     session = Session()
@@ -14,8 +16,15 @@ def run(cat_filter = None, date_filter = None):
 
     expenses = query.order_by(Expense.date).all()
 
-    for expense in expenses:
-        print(f"{expense.date.date()} | {expense.category:<15} | ${expense.amount:<6} | {expense.description}")
+   
+    if expenses:
+        rows = [
+            [expense.id, expense.date.date(), expense.category, f"${expense.amount}", expense.description]
+            for expense in expenses
+        ]
+        print(tabulate(rows, headers=["ID", "Date", "Category", "Amount", "Description"]))
+    else:
+        print("No expenses found")
 
     session.close()
 

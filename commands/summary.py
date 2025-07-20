@@ -2,13 +2,13 @@ from models.expense import Expense
 from sqlalchemy import func, desc
 from db.database import Session
 
-UNDERLINE = "\033[4m"
+UNDERLINE = "\033[4;33m"
 RESET = "\033[0m"
 def run():
     session = Session()
 
     #grouping total by category
-    print(f"\n{UNDERLINE}Total spending by category:{RESET}")
+    print(f"\n{UNDERLINE}📊 Total spending by category:{RESET}")
     results = session.query(
         Expense.category,
         func.sum(Expense.amount)).group_by(Expense.category).all()
@@ -21,10 +21,10 @@ def run():
         Expense.category, func.sum(Expense.amount).label("total")).group_by(Expense.category).order_by(
         desc("total")).first()
 
-    print(f"\nYou spent the most on {top_category}")
+    print(f"\nYou spent the most on {top_category[0]}: ${round(top_category[1], 2)}")
 
     #group total by month
-    print(f"\n{UNDERLINE}Total spending by month:{RESET}")
+    print(f"\n{UNDERLINE}📅 Total spending by month:{RESET}")
     results = session.query(
         func.strftime('%Y-%m', Expense.date).label("month"),
         func.sum(Expense.amount)).group_by("month").all()
@@ -38,7 +38,7 @@ def run():
         func.sum(Expense.amount).label("total")).group_by("month").order_by(
         desc("total")).first()
 
-    print(f"\n{top_month} had the highest spending")
+    print(f"\nYou spent the most in {top_month[0]}: ${round(top_month[1], 2)}")
 
     session.close()
 
