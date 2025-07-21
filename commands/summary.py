@@ -40,7 +40,7 @@ def run():
         func.sum(Expense.amount).label("total")).group_by("month").order_by(
         desc("total")).first()
 
-    print(f"\n{Fore.GREEN}You spent the most in {top_month[0]}: ${round(top_month[1], 2)}")
+    print(f"\n{Fore.GREEN}You spent the most in {top_month[0]}: ${round(top_month[1], 2)}\n")
 
     session.close()
 

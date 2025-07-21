@@ -22,7 +22,7 @@ expenses = [
     Expense(
         date = fake.date_this_year(),
         category = choice(CATEGORIES),
-        amount = randint(50, 250),
+        amount = randint(10, 2500),
         description = fake.sentence(nb_words=5)
     )
 for _ in range(20)
