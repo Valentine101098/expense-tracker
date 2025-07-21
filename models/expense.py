@@ -7,7 +7,7 @@ class Expense(Base):
     __tablename__ = 'expenses'
     __table_args__ = (
         PrimaryKeyConstraint('id', name='id_pk'),
-        CheckConstraint('amount BETWEEN 50 AND 250',name='amount_between_50_and_250'),
+        CheckConstraint('amount BETWEEN 10 AND 2500',name='amount_between_10_and_2500'),
         Index('index_name', 'category')
     )
 

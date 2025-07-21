@@ -36,7 +36,7 @@ def run():
 
         #get amount
         try:
-            amount = float(input(Fore.LIGHTBLUE_EX + "Enter amount: "))
+            amount = float(input(Fore.LIGHTBLUE_EX + "Enter amount between 10 and 2500 dollars: "))
         except ValueError:
             print(Fore.RED + "❌ Please enter a valid number")
             return
