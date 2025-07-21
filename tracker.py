@@ -1,12 +1,14 @@
 import sys
 from commands import add, list, summary, search
+from colorama import init, Fore,Back,Style
+init(autoreset=True)
 
 def main():
     if len(sys.argv) == 1: #Checks that the script was run without any extra command-line arguments ie just pipenv run tracker
         # Interactive Mode
         while True:
-            print("\n1.Add expense \n2.List expenses \n3.Summary \n4.Search \n5.Exit")
-            choice = input("Select option: \n")
+            print(Fore.CYAN + Style.BRIGHT + "\n1.Add expense \n2.List expenses \n3.Summary \n4.Search \n5.Exit")
+            choice = input("\nSelect option:")
             if choice == "1":
                 print("➕ Adding New Expense...\n")
                 add.run()
@@ -20,10 +22,10 @@ def main():
                 print("🔎 Search by date, category or description...\n")
                 search.run()
             elif choice == "5":
-                print("Goodbye \n")
+                print("See you next time! \n")
                 break
             else:
-                print("✖️ Invalid option. Please try again\n")
+                print("✖️ Invalid option. Please put a number from 1-5\n")
     else:
         # Command Mode
         command = sys.argv[1] #checks what command is after pipenv run tracker

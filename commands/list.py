@@ -1,6 +1,8 @@
 from models.expense import Expense
 from db.database import Session
 from tabulate import tabulate
+from colorama import init, Fore,Back,Style
+init(autoreset=True)
 
 
 def run(cat_filter = None, date_filter = None):
@@ -16,15 +18,15 @@ def run(cat_filter = None, date_filter = None):
 
     expenses = query.order_by(Expense.date).all()
 
-   
+
     if expenses:
         rows = [
-            [expense.id, expense.date.date(), expense.category, f"${expense.amount}", expense.description]
+            [expense.date.date(), expense.category, f"${expense.amount}", expense.description]
             for expense in expenses
         ]
-        print(tabulate(rows, headers=["ID", "Date", "Category", "Amount", "Description"]))
+        print(Fore.YELLOW + Style.DIM + tabulate(rows, tablefmt="fancy_grid", colalign= ("center", "center", "left", "right"), headers=["DATE", "CATEGORY", "AMOUNT", "DESCRIPTION"]))
     else:
-        print("No expenses found")
+        print(Fore.RED + Style.NORMAL + "No expenses found")
 
     session.close()
 
