@@ -9,7 +9,7 @@ A command-line personal expense tracker built with Python, SQLite, and SQLAlchem
 ### 1. Clone the Repository
 
 ```bash
-git clone git@github.com:Moringa-SDF-PT10/expense-tracker-valentine-wanjiru.git
+git clone git@github.com:Valentine101098/expense-tracker.git
 
 cd expense-tracker-valentine-wanjiru
 ```
